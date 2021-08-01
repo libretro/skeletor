@@ -239,7 +239,7 @@ bool retro_load_game_special(unsigned type, const struct retro_game_info *info, 
 
 size_t retro_serialize_size(void)
 {
-   return false;
+   return 0;
 }
 
 bool retro_serialize(void *data_, size_t size)
