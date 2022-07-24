@@ -1,2 +1,2 @@
-SOURCES_C   := 
-SOURCES_CXX := $(CORE_DIR)/libretro.c
+SOURCES_C   := $(CORE_DIR)/libretro.c
+SOURCES_CXX := 

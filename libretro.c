@@ -94,8 +94,6 @@ void retro_get_system_av_info(struct retro_system_av_info *info)
    last_sample_rate            = sampling_rate;
 }
 
-static struct retro_rumble_interface rumble;
-
 void retro_set_environment(retro_environment_t cb)
 {
    environ_cb = cb;
@@ -142,16 +140,11 @@ void retro_set_video_refresh(retro_video_refresh_t cb)
    video_cb = cb;
 }
 
-static unsigned x_coord;
-static unsigned y_coord;
 static unsigned phase;
-static int mouse_rel_x;
-static int mouse_rel_y;
 
 void retro_reset(void)
 {
-   x_coord = 0;
-   y_coord = 0;
+
 }
 
 static void update_input(void)
@@ -183,7 +176,6 @@ static void audio_set_state(bool enable)
 
 void retro_run(void)
 {
-   unsigned i;
    update_input();
 
 

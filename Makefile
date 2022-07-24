@@ -143,7 +143,11 @@ endif
 
 %.o: %.c
 	@$(if $(Q), $(shell echo echo CC $<),)
-	$(Q)$(CXX) $(CFLAGS) $(fpic) -c -o $@ $<
+	$(Q)$(CC) $(CFLAGS) $(fpic) -c -o $@ $<
+
+%.o: %.cpp
+	@$(if $(Q), $(shell echo echo CXX $<),)
+	$(Q)$(CXX) $(CXXFLAGS) $(fpic) -c -o $@ $<
 
 clean:
 	rm -f $(OBJECTS) $(TARGET)
