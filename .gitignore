@@ -1,0 +1,8 @@
+# Object file.
+/*.o
+
+# Built libretro core.
+/skeleton_libretro.*
+
+# Typical CMake build directory.
+/build
