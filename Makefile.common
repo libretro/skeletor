@@ -1,2 +1,4 @@
+CFLAGS += -Ilibretro-common/include
+
 SOURCES_C   := $(CORE_DIR)/libretro.c
 SOURCES_CXX := 
