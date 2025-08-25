@@ -23,5 +23,8 @@ endif()
 # Prevent the 'lib' prefix from being added, to match the behaviour of the Makefile.
 set_target_properties(skeleton_libretro PROPERTIES PREFIX "")
 
+# Specify the library name, and append the libretro suffix to it.
+set_target_properties(skeleton_libretro PROPERTIES OUTPUT_NAME "skeleton_libretro${LIBRETRO_SUFFIX}")
+
 # Let the software know that it is targeting libretro.
 target_compile_definitions(skeleton_libretro PRIVATE __LIBRETRO__)
