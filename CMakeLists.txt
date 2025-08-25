@@ -9,7 +9,11 @@ add_library(skeleton_libretro
 	"libretro.c"
 )
 
-# Avoid some linker errors to do with relocations.
+############################################
+# Standard libretro core boilerplate code. #
+############################################
+
+# Avoid some relocation-related linker errors.
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
 # Include libretro-common, so that 'libretro.h' can be found.
@@ -20,16 +24,18 @@ if(MSVC AND MSVC_VERSION LESS 1600)
 	target_include_directories(skeleton_libretro PRIVATE "libretro-common/include/compat/msvc")
 endif()
 
-# Prevent the 'lib' prefix from being added, to match the behaviour of the Makefile.
+# Give the code a way of determining that it is targeting libretro.
+target_compile_definitions(skeleton_libretro PRIVATE __LIBRETRO__)
+
+# Adjust the library's filename. This is relied upon by libretro's CI infrastructure.
+
+# Remove the 'lib' prefix.
 set_target_properties(skeleton_libretro PROPERTIES PREFIX "")
 
-# Specify the library name, and append the libretro suffix to it.
+# Append the given suffix.
 set_target_properties(skeleton_libretro PROPERTIES OUTPUT_NAME "skeleton_libretro${LIBRETRO_SUFFIX}")
 
-# libretro's CI expects Emscripten builds to end in '.bc' instead of '.a'.
+# Emscripten builds are expected to use the '.bc' file extension instead of '.a'.
 if(LIBRETRO_STATIC AND EMSCRIPTEN)
 	set_target_properties(skeleton_libretro PROPERTIES SUFFIX ".bc")
 endif()
-
-# Let the software know that it is targeting libretro.
-target_compile_definitions(skeleton_libretro PRIVATE __LIBRETRO__)
