@@ -13,7 +13,7 @@ add_library(skeleton_libretro
 # Standard libretro core boilerplate code. #
 ############################################
 
-# Avoid some relocation-related linker errors.
+# Avoid some relocation-related linker errors when building a shared library that depends on static libraries.
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
 # Include libretro-common, so that 'libretro.h' can be found.
