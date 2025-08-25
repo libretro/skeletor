@@ -26,5 +26,10 @@ set_target_properties(skeleton_libretro PROPERTIES PREFIX "")
 # Specify the library name, and append the libretro suffix to it.
 set_target_properties(skeleton_libretro PROPERTIES OUTPUT_NAME "skeleton_libretro${LIBRETRO_SUFFIX}")
 
+# libretro's CI expects Emscripten builds to end in '.bc' instead of '.a'.
+if(LIBRETRO_STATIC AND EMSCRIPTEN)
+	set_target_properties(skeleton_libretro PROPERTIES SUFFIX ".bc")
+endif()
+
 # Let the software know that it is targeting libretro.
 target_compile_definitions(skeleton_libretro PRIVATE __LIBRETRO__)
