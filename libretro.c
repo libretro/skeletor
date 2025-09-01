@@ -63,11 +63,15 @@ void retro_set_controller_port_device(unsigned port, unsigned device)
    log_cb(RETRO_LOG_INFO, "Plugging device %u into port %u.\n", device, port);
 }
 
+#ifndef GIT_VERSION
+#define GIT_VERSION ""
+#endif
+
 void retro_get_system_info(struct retro_system_info *info)
 {
    memset(info, 0, sizeof(*info));
    info->library_name     = "skeleton";
-   info->library_version  = "0.1";
+   info->library_version  = "0.1" GIT_VERSION;
    info->need_fullpath    = true;
    info->valid_extensions = "";
 }

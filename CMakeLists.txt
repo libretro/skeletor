@@ -39,3 +39,16 @@ set_target_properties(skeleton_libretro PROPERTIES OUTPUT_NAME "skeleton_libretr
 if(LIBRETRO_STATIC AND EMSCRIPTEN)
 	set_target_properties(skeleton_libretro PROPERTIES SUFFIX ".bc")
 endif()
+
+# Obtain the Git revision so that it can be displayed in the core's version string.
+find_package(Git)
+if(GIT_FOUND)
+	execute_process(
+		COMMAND ${GIT_EXECUTABLE} rev-parse --short HEAD
+		OUTPUT_VARIABLE GIT_VERSION
+		OUTPUT_STRIP_TRAILING_WHITESPACE
+	)
+	if(GIT_VERSION)
+		target_compile_definitions(skeleton_libretro PRIVATE GIT_VERSION=" ${GIT_VERSION}")
+	endif()
+endif()
