@@ -27,6 +27,9 @@ endif()
 # Give the code a way of determining that it is targeting libretro.
 target_compile_definitions(skeleton_libretro PRIVATE __LIBRETRO__)
 
+# Allow only the libretro API functions to be exported.
+set_target_properties(skeleton_libretro PROPERTIES C_VISIBILITY_PRESET hidden CXX_VISIBILITY_PRESET hidden VISIBILITY_INLINES_HIDDEN ON)
+
 # Adjust the library's filename. This is relied upon by libretro's CI infrastructure.
 
 # Remove the 'lib' prefix.
